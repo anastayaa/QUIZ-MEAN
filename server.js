@@ -8,7 +8,7 @@ const pgClient = require("pg");
 const sha1 = require("sha1");
 
 // app port
-const port = 3367;
+const port = 3067;
 
 // response data
 let data = {};	
