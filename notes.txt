@@ -1,0 +1,145 @@
+Install node.js: https://nodejs.org/en/download/ 
+
+Check node.js version by using: node -v
+
+And npm version by using: npm -v
+
+===========================  Backend  ===================================================
+
+Create a new node project: npm init
+
+Intall express: npm install express
+
+
+=========================== End Backend  ================================================
+
+
+=========================== Databases ===================================================
+
+docker run -d --name postgres-database \
+               -p 5432:5432 \
+               -e "POSTGRES_USER=uapv1900318" \
+	       -e "POSTGRES_PASSWORD=ZvbM9R" \
+               -e "POSTGRES_DB=etd" \
+	       -v postgres-database-volume:/var/lib/postgresql/data \
+               postgres
+
+winpty docker exec -it postgres-database bash
+
+psql -h localhost -U uapv1900318 -d etd
+
+create table users(
+	id 
+	identifiant varchar,
+        motpasse varchar,
+	nom varchar,
+	prenom varchar,
+	date_naissance date,
+	statut_connexion integer
+);
+
+create table historique(
+	id_user integer,
+	date_jeu date,
+	niveau_jeu integer,
+	nb_reponses_corr integer,
+	temps integer,
+	score integer
+);
+
+insert into users values('houria', '0867322e7c4223c85b4c8d14b69ab8a6fc774dad', 'houria', 'soul', '09-10-1997', 0);
+insert into users values('anas', 'f562026fbc2ad1c4a17c1d93b236c78202d1d1bc', 'anas', 'tayaa', '03-30-1997', 0);
+
+insert into historique values(1, '01-06-2021', 3, 3, 10, 20);
+insert into historique values(2, '01-06-2021', 3, 3, 10, 20);
+insert into historique values(2, '01-07-2021', 3, 3, 10, 18);
+
+docker run -d --name mongo-database -p 27017:27017 -v mongo-database-volume:/data/db mongo
+
+winpty docker exec -it mongo-database bash
+
+mongo
+ 
+use db
+
+db.createCollection("mySessions");
+db.createCollection("quizz");
+
+db.quizz.insert([
+	{
+		id: 1,
+		question: "Question 1",
+		propositions: ["rep1", "rep2", "rep3"],
+		réponse: "rep1",
+		anecdote: "anecdote1"
+	},
+	{
+		id: 2,
+		question: "Question 2",
+		propositions: ["rep1", "rep2", "rep3"],
+		réponse: "rep2",
+		anecdote: "anecdote2"
+	},
+	{
+		id: 3,
+		question: "Question 3",
+		propositions: ["rep1", "rep2", "rep3"],
+		réponse: "rep3",
+		anecdote: "anecdote3"
+	},
+	{
+		id: 4,
+		question: "Question 4",
+		propositions: ["rep1", "rep2", "rep3", "rep4"],
+		réponse: "rep4",
+		anecdote: "anecdote4"
+	}
+])
+=========================== End Databases ===============================================
+
+=========================== Frontend  ===================================================
+
+Install angular: npm install -g @angular/cli
+
+Check angular version by using: ng version
+
+create a new angular app: ng new app-name
+
+serve angular app: ng serve
+
+generate a new componenet: ng generate component home
+
+generate a new componenet: ng generate component play
+
+generate a new componenet: ng generate service user
+
+generate a new componenet: ng generate component profile
+
+generate a new componenet: ng generate component players
+
+generate a new componenet: ng generate component quizz
+=========================== End Frontend  ===================================================
+
+
+Score:
+
+1 minute for a question
+
+score=nbcorrect*nbquestion/nbminutesquiz
+
+exemple 20 questions 20 minutes 18 correct 22 nbminutesquiz 
+
+Cas Anas 
+
+score = ((18*20/22)  / 20) * 100 ==> score = (18/22) * 100
+
+Cas Houria:
+
+score = (18/20) * 100 ==> 90%
+
+
+
+
+
+
+

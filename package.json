@@ -1,0 +1,21 @@
+{
+  "name": "quiz-mean",
+  "version": "1.0.0",
+  "description": "QUIZ mean app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "connect-mongodb-session": "^2.2.0",
+    "express-session": "^1.17.0",
+    "mongodb": "^3.3.3",
+    "path": "^0.12.7",
+    "pg": "^8.0.3",
+    "sha1": "^1.1.1"
+  }
+}
